@@ -2,10 +2,10 @@
   "name": "bike-rental-backend",
   "version": "1.0.0",
   "description": "Bike Rental Prediction Backend",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
