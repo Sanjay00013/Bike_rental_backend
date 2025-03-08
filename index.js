@@ -34,8 +34,11 @@ app.post('/api/predict', async (req, res) => {
         console.log('Spawning Python process...');
         console.log('Current directory:', __dirname);
         console.log('Python script path:', path.join(__dirname, 'predict.py'));
+
+        const pythonCommand = process.env.NODE_ENV === 'production' ? 'python3' : 'python';
+        console.log('Python command:', {pythonCommand});
         
-        const pythonProcess = spawn('python', [
+        const pythonProcess = spawn(pythonCommand, [
             'predict.py',
             JSON.stringify(req.body)
         ], {
@@ -44,6 +47,8 @@ app.post('/api/predict', async (req, res) => {
 
         let result = '';
         let error = '';
+
+
 
         pythonProcess.stdout.on('data', (data) => {
             console.log('Python stdout:', data.toString());
